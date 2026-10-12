@@ -1,0 +1,179 @@
+{
+  "checks": [
+    {
+      "name": "작업공간→프로젝트→빈맵",
+      "pass": true
+    },
+    {
+      "name": "1440 캔버스60% 이상",
+      "pass": true,
+      "detail": {
+        "width": 936,
+        "ratio": 0.65
+      }
+    },
+    {
+      "name": "3노드 실제생성",
+      "pass": true
+    },
+    {
+      "name": "일반 그래프 순환 허용",
+      "pass": true
+    },
+    {
+      "name": "중복 연결 거부",
+      "pass": true
+    },
+    {
+      "name": "HTML 실행요소 삽입없음",
+      "pass": true
+    },
+    {
+      "name": "메타데이터 검색",
+      "pass": true
+    },
+    {
+      "name": "2노드 그룹 상대좌표",
+      "pass": true
+    },
+    {
+      "name": "그룹 위치·크기 편집",
+      "pass": true
+    },
+    {
+      "name": "복합 Undo/Redo 정확",
+      "pass": true
+    },
+    {
+      "name": "다중삭제 dangling edge0",
+      "pass": true
+    },
+    {
+      "name": "다중삭제 Undo ID/좌표/관계 동일",
+      "pass": true
+    },
+    {
+      "name": "드래그15단계 단일이력",
+      "pass": true
+    },
+    {
+      "name": "드래그 Undo 위치복원",
+      "pass": true
+    },
+    {
+      "name": "합성 IME 단축키 보호",
+      "pass": true
+    },
+    {
+      "name": "결정 확정≠업무 완료",
+      "pass": true
+    },
+    {
+      "name": "명부·노드·결정 다중참조",
+      "pass": true
+    },
+    {
+      "name": "진행률0%",
+      "pass": true
+    },
+    {
+      "name": "완료시100%",
+      "pass": true
+    },
+    {
+      "name": "업무→노드 이동",
+      "pass": true
+    },
+    {
+      "name": "노드→결정 상세 직접 이동",
+      "pass": true
+    },
+    {
+      "name": "전체 도메인 reload 동일",
+      "pass": true
+    },
+    {
+      "name": "한 사용자 여정 백업/복원 완료",
+      "pass": true
+    },
+    {
+      "name": "390 문서 가로넘침0",
+      "pass": true
+    },
+    {
+      "name": "390 목록 대안",
+      "pass": true
+    },
+    {
+      "name": "390 상세 초점",
+      "pass": true
+    },
+    {
+      "name": "390 모바일 도메인 접근",
+      "pass": true
+    },
+    {
+      "name": "768 문서 가로넘침0",
+      "pass": true
+    },
+    {
+      "name": "768 목록 대안",
+      "pass": true
+    },
+    {
+      "name": "768 상세 초점",
+      "pass": true
+    },
+    {
+      "name": "768 모바일 도메인 접근",
+      "pass": true
+    },
+    {
+      "name": "1440 문서 가로넘침0",
+      "pass": true
+    },
+    {
+      "name": "1920 문서 가로넘침0",
+      "pass": true
+    },
+    {
+      "name": "dialog Tab 초점순환",
+      "pass": true
+    },
+    {
+      "name": "Esc 초점복귀",
+      "pass": true
+    },
+    {
+      "name": "720 CSS 200%동등 리플로",
+      "pass": true
+    },
+    {
+      "name": "JS 콘솔오류0",
+      "pass": true,
+      "detail": []
+    },
+    {
+      "name": "외부요청0",
+      "pass": true,
+      "detail": []
+    },
+    {
+      "name": "자산HTTP오류0",
+      "pass": true,
+      "detail": []
+    }
+  ],
+  "passed": 39,
+  "errors": [],
+  "external": [],
+  "httpErrors": [],
+  "browser": "153.0.8010.0",
+  "unverified": [
+    "실제 OS IME",
+    "native200%",
+    "스크린리더",
+    "터치실기기",
+    "Firefox/Safari"
+  ]
+}

@@ -3,3 +3,7 @@ dist/
 *.log
 *.cpuprofile
 .DS_Store
+
+node_modules
+screenshots/p3-*.png
+evidence/p3/*.png

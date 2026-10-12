@@ -16,7 +16,14 @@ function id(x: unknown, at: string): string { const s = text(x, at, 100); if (!/
 function num(x: unknown, at: string, min = -100000, max = 100000): number { if (typeof x !== 'number' || !Number.isFinite(x) || x < min || x > max)
     fail(at + ': 허용 범위의 유한 숫자가 필요합니다.'); return x as number; }
 function point(x: unknown, at: string): Point { const o = obj(x, ['x', 'y'], at); return { x: num(o.x, at + '.x'), y: num(o.y, at + '.y') }; }
-function meta(x: unknown): Metadata { const o = obj(x, ['description', 'notes'], '메타데이터'); return { description: text(o.description, '설명', LIMIT.text, false), notes: text(o.notes, '메모', LIMIT.text, false) }; }
+function meta(x: unknown): Metadata {
+ const o=obj(x,['description','notes','tags','customStatus','properties'],'메타데이터');
+ const m:Metadata={description:text(o.description,'설명',LIMIT.text,false),notes:text(o.notes,'메모',LIMIT.text,false)};
+ if(o.tags!==undefined){m.tags=array(o.tags,20,'태그').map(v=>text(v,'태그',60));if(new Set(m.tags).size!==m.tags.length)fail('태그는 중복될 수 없습니다.');}
+ if(o.customStatus!==undefined)m.customStatus=text(o.customStatus,'요소 상태',60,false);
+ if(o.properties!==undefined){const keys=new Set<string>();let urls=0;m.properties=array(o.properties,30,'속성').map(v=>{const p=obj(v,['key','type','value'],'속성');const key=text(p.key,'속성 이름',60);if(keys.has(key)||['__proto__','constructor','prototype'].includes(key))fail('중복/위험한 속성 이름');keys.add(key);const type=text(p.type,'속성 형식');if(!['text','number','date','choice','url'].includes(type))fail('속성 형식 오류');const value=type==='number'?num(p.value,'숫자 속성',-Number.MAX_SAFE_INTEGER,Number.MAX_SAFE_INTEGER):text(p.value,'속성 값',2000,false);if(type==='date'&&(!/^\d{4}-\d{2}-\d{2}$/.test(String(value))||!Number.isFinite(Date.parse(String(value)))||new Date(String(value)).toISOString().slice(0,10)!==value))fail('유효한 날짜가 아닙니다.');if(type==='url'){urls++;try{const u=new URL(String(value));if(!['http:','https:'].includes(u.protocol))fail('URL은 http/https만 지원합니다.');}catch{fail('유효한 http/https URL이 필요합니다.');}}return {key,type:type as NonNullable<Metadata['properties']>[number]['type'],value};});if(urls>10)fail('URL 속성은10개까지 지원합니다.');}
+ return m;
+}
 function array(x: unknown, max: number, at: string): unknown[] { if (!Array.isArray(x) || x.length > max)
     fail(at + ': 최대 ' + max + '개 배열만 지원합니다.'); return x as unknown[]; }
 export function validateMap(input: unknown): Map {

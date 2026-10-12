@@ -1,0 +1,9 @@
+{
+  "unit": 22,
+  "e2e": 33,
+  "build": "PASS",
+  "npmCI": "PASS offline + online",
+  "browser": "Chromium153 refreshed binary",
+  "baseline": "63d1c9105db5c78403bf8cbb1b601a0265d4f54b",
+  "earlyFailure": "이전 런타임 chromium 파일 잘림으로 SIGSEGV; 정상 패키지 재추출 후 통과"
+}

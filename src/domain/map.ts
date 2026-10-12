@@ -2,7 +2,9 @@ export type Point = {
     x: number;
     y: number;
 };
+export type Property={key:string;type:'text'|'number'|'date'|'choice'|'url';value:string|number};
 export type Metadata = {
+    tags?:string[];customStatus?:string;properties?:Property[];
     description: string;
     notes: string;
 };

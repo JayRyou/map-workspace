@@ -1,0 +1,170 @@
+import { setupProject } from "./p3-ui.mjs";
+import { openBrowser } from "./browser-utils.mjs";
+import fs from "node:fs";
+import os from "node:os";
+const env = await openBrowser(),
+  p = env.page;
+const percentile = (a, q) =>
+  [...a].sort((x, y) => x - y)[Math.ceil(a.length * q) - 1];
+try {
+  await setupProject(p, env.url);
+  await p
+    .locator(".statebar")
+    .getByText("이 기기에서 저장됨", { exact: true })
+    .waitFor();
+  await p.getByRole("button", { name: "? 단축키·도움말", exact: true }).click();
+  await p
+    .getByRole("button", { name: "500요소 성능 fixture 확인", exact: true })
+    .click();
+  const start = Date.now();
+  await p
+    .getByRole("button", { name: "성능 fixture로 교체", exact: true })
+    .click();
+  await p.waitForFunction(
+    () => document.querySelectorAll(".react-flow__node-mapNode").length === 500,
+  );
+  await p
+    .locator(".statebar")
+    .getByText("이 기기에서 저장됨", { exact: true })
+    .waitFor();
+  const loadMs = Date.now() - start;
+  await p
+    .locator(".canvas-footer")
+    .getByRole("button", { name: "전체 보기", exact: true })
+    .click();
+  await p
+    .locator(".statebar")
+    .getByText("이 기기에서 저장됨", { exact: true })
+    .waitFor();
+  const cdp = await env.context.newCDPSession(p);
+  await cdp.send("Performance.enable");
+  await cdp.send("HeapProfiler.collectGarbage");
+  const metrics = async () =>
+    Object.fromEntries(
+      (await cdp.send("Performance.getMetrics")).metrics.map((m) => [
+        m.name,
+        m.value,
+      ]),
+    );
+  const before = await metrics();
+  await cdp.send("Profiler.enable");
+  await cdp.send("Profiler.start");
+  const samples = await p.evaluate(async () => {
+    const out = [];
+    for (let i = 0; i < 45; i++) {
+      const id = "n" + ((i * 11) % 500),
+        node = document.querySelector(
+          '.react-flow__node[data-id="' + id + '"]',
+        );
+      const start = performance.now();
+      node.dispatchEvent(new MouseEvent("click", { bubbles: true }));
+      await new Promise((resolve, reject) => {
+        const until = performance.now() + 5000;
+        function frame() {
+          const label = document.querySelector(".inspector h2")?.textContent;
+          if (
+            node.classList.contains("selected") &&
+            label === "확인 요소 " + ((i * 11) % 500)
+          ) {
+            requestAnimationFrame(resolve);
+          } else if (performance.now() > until)
+            reject(Error("selection timeout"));
+          else requestAnimationFrame(frame);
+        }
+        requestAnimationFrame(frame);
+      });
+      out.push(performance.now() - start);
+    }
+    return out;
+  });
+  const profile = (await cdp.send("Profiler.stop")).profile;
+  fs.writeFileSync("evidence/p3/selection.cpuprofile", JSON.stringify(profile));
+  await cdp.send("HeapProfiler.collectGarbage");
+  const after = await metrics();
+  await p.evaluate(() => {
+    window.__frameTimes = [];
+    window.__frameStop = false;
+    let last;
+    const frame = (t) => {
+      if (last) window.__frameTimes.push(t - last);
+      last = t;
+      if (!window.__frameStop) requestAnimationFrame(frame);
+    };
+    requestAnimationFrame(frame);
+  });
+  const box = await p.locator(".graph-root").boundingBox();
+  await p.mouse.move(box.x + box.width / 2, box.y + box.height / 2);
+  await p.mouse.down({ button: "right" });
+  for (let i = 0; i < 90; i++)
+    await p.mouse.move(
+      box.x + box.width / 2 + Math.sin(i / 10) * 110,
+      box.y + box.height / 2 + Math.cos(i / 10) * 60,
+    );
+  await p.mouse.up({ button: "right" });
+  const frames = await p.evaluate(() => {
+    window.__frameStop = true;
+    return window.__frameTimes;
+  });
+  const document = await p.evaluate(() =>
+    JSON.parse(localStorage.getItem("map-workspace:p3:workspace-local:v3")),
+  );
+  await p.screenshot({ path: "screenshots/p3-500-nodes.png" });
+  const measured = samples.slice(5),
+    r = {
+      date: new Date().toISOString(),
+      environment: {
+        browser: env.browser.version(),
+        node: process.version,
+        platform: os.platform(),
+        cpu: os.cpus()[0]?.model,
+        logicalCPUs: os.cpus().length,
+        memoryGiB: Math.round(os.totalmem() / 1073741824),
+        viewport: { width: 1440, height: 1000 },
+        headless: true,
+        cpuThrottle: 1,
+      },
+      fixture: {
+        nodes: 500,
+        edges: 1000,
+        persistedNodes: document.maps[0].map.nodes.length,
+        persistedEdges: document.maps[0].map.edges.length,
+      },
+      method:
+        "DOM click event→selected class and Inspector matching→next rAF.45회 중 초기5회 제외. 실제 입력장치 지연/화면 픽셀 presentation 측정 아님. 프레임은 우클릭 드래그90회 중 rAF 간격. JS heap은 CDP GC 후.",
+      initialSwitchThroughSavedMs: loadMs,
+      selection: {
+        samplesMs: measured,
+        p50: percentile(measured, 0.5),
+        p95: percentile(measured, 0.95),
+        max: Math.max(...measured),
+        goalMs: 100,
+        goalMet: percentile(measured, 0.95) <= 100,
+      },
+      frames: {
+        count: frames.length,
+        p50: percentile(frames, 0.5),
+        p95: percentile(frames, 0.95),
+        over33ms: frames.filter((v) => v > 33.4).length,
+      },
+      timings: Object.fromEntries(
+        [
+          "ScriptDuration",
+          "LayoutDuration",
+          "RecalcStyleDuration",
+          "TaskDuration",
+        ].map((k) => [k, (after[k] - before[k]) * 1000]),
+      ),
+      heap: {
+        beforeBytes: before.JSHeapUsedSize,
+        afterBytes: after.JSHeapUsedSize,
+        deltaBytes: after.JSHeapUsedSize - before.JSHeapUsedSize,
+        scope: "JS heap only, process/GPU/native memory excluded",
+      },
+      limits:
+        "단일 Linux headless 실행. 실제 저사양/모바일/장시간 누수/다른 브라우저 미검증.",
+    };
+  fs.writeFileSync("evidence/p3/performance.json", JSON.stringify(r, null, 2));
+  console.log(JSON.stringify(r, null, 2));
+} finally {
+  await env.close();
+}

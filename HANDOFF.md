@@ -1,123 +1,37 @@
-# P2 인계
+# P3 인수인계
 
-**P2 완료 — 외부 검수 대기**. 사용자·검수자 승인 전 P3 착수 금지.
+**P3 완료 — 외부 검수 대기**. P4 착수·원격 push·main 병합·배포를 수행하지 않았습니다.
 
-## 실행 및 기준선
+## 유지할 계약
 
-루트 README의 `node scripts/serve-dist.mjs`로 배포용 dist를 로컬 실행합니다. 개발은 `npm ci` 이후 `npm run dev`; 정확한 버전은 lockfile, 변경 파일은 docs/p2/CHANGED_FILES.md, 패키지별 SHA-256은 FILE_MANIFEST.json입니다. 외부 Git 원격 생성·push·배포는 하지 않았습니다.
+기존 P2 GraphCanvas/graph 명령·history·keyboard를 사용합니다. 외부 EditorHost가 repository·flush·rename·jump·도메인맥락을 주입합니다. 저장소/프로젝트셸이 P3 aggregate, 캔버스가 현재맵 편집이력을 소유합니다. 활성 맵 이름 변경도 title 명령을 통해 처리합니다. 뷰는 Undo 밖입니다.
 
-## P3가 이어받을 계약
+MapRecord는 projectId와 P2 map/view 및 archivedAt/deletedAt을 가집니다. Decision/Task는 프로젝트 소유로 같은 프로젝트 여러맵을 연결합니다. RosterPerson은 workspace 소유 로컬명부이며 계정/권한이 아닙니다. 정확한 필드·한도는 src/project/model.ts, validation.ts와 docs/p3/DOMAIN_MODEL.md가 기준입니다.
 
-- 공통 모델: src/domain/map.ts. Map의 id/title/nodes/edges/groups와 최소 metadata(description/notes)만 P2에서 구현했습니다.
-- 연결: 유효 source/target, 전체 ID 유일성, self 거부, 동일source/target/type 거부. 역방향·서로 다른type·일반 순환 허용. 업무 DAG는 별도 도메인 정책이어야 합니다.
-- 그룹: 단일부모·중첩없음. 그룹 위치는 절대좌표, 소속노드는 상대좌표. 해제/삭제 시 그룹 위치를 더해 자식 화면위치를 보존합니다. 그룹 삭제로 자식·관계는 삭제하지 않습니다.
-- 편집: graph/commands.ts execute→검증→history commit. 드래그는 종료1회, UI view는 이력 밖입니다. Undo/Redo는 past/future 각80건/16MiB이며 reload 후 사라집니다.
-- 저장: format=map-workspace-map-local / schemaVersion=1 / map/view/savedAt. 키 map-workspace:p2:map-local:v1, :previous, :quarantine. 현재/이전 정상·격리 보존과 실패시 초안 유지. 최대1MiB/500노드/1000edge/50그룹.
-- 가져오기: unknown key/버전/prototype/잘못된 참조 거부, 미리보기 후 교체. P1 데모 형식이나 제품 backup이 아닙니다. P3는 명시적 migration/fixture와 roundtrip 검증을 새로 정의해야 합니다.
-- 동시성: storage event/expectedRaw 비교는 로컬 방어이며 서버 revision/CAS가 아닙니다. P0 D-01/02/03은 여전히 잠정이고 인증·공유·DB 결정으로 확정하지 않았습니다.
-- UI: 실제 저장 readback 뒤 완료 표시. Inspector 폼은 적용 버튼부터 명령화합니다. 결정/업무 예시는 editor aggregate 밖의 읽기 전용 표시입니다.
+결정 proposed/evaluating/accepted/rejected/superseded, 별도 scope in/out/unknown. 업무 todo/doing/done/blocked. 업무 done만 진행률 분자, 보관/삭제 제외가 분모이고 blocked는 포함합니다. 취소라는 별도 상태는 추가하지 않았으며 제외하려면 보관합니다. 선행순환만 거부하며 일반 맵 순환은 허용합니다.
 
-## 미완성·검수 필요
+## 데이터 보호와 제약
 
-제품 workspace/project/권한/revision, 결정·업무 CRUD, 제품 속성 스키마·정식 백업 migration은 구현하지 않았습니다. 계정·서버·DB·초대·공유·결제·인프라도 없습니다.
+P3 LocalStorage aggregate는10MiB기술상한이지만 브라우저quota가 먼저 걸릴 수 있습니다. 현재/previous/격리값 및 P2 별도원본이 저장공간을 함께 씁니다. 권한/서버CAS 없이 raw비교+storage event만 사용합니다. 완전히 동시인 쓰기의 원자성을 주장하지 않습니다.
 
-실제OS 한글IME, native200%확대, 스크린리더, 터치실기기, Firefox/Safari, 깨끗한 npm ci 완료는 UNVERIFIED입니다. QA_REPORT의 외부 검수 경로대로 확인하고 승인 결과를 남겨야 합니다. 단일 Linux 측정의 p95 결과를 모든 기기 보증으로 사용하지 마세요. 그룹은 Inspector 크기 입력으로 조절하며 캔버스 전용 리사이즈 핸들은 제공하지 않습니다.
+기존 P2 키에 쓰지 않으며 SHA256 내용 fingerprint로 명시적이행 중복을 막습니다. 전체 P3 backup v3와 P2 map-local v1은 구분합니다. 원본저장/새문서저장 실패시 기존 데이터 유지. 초안은 메모리에 유지하고 JSON으로 회수합니다. 전체한도를 넘긴 초안은 회수할 수 있지만 재가져오기 전 용량을 줄여야 합니다.
 
-## 하위 단계 인계 원장
+맵세션 Undo는 맵 전환/reload/전체백업교체 시 초기화합니다. 데이터/view는 유지합니다. 프로젝트/결정/업무 CRUD는 캔버스Undo 범위 밖입니다. 노드삭제는 업무/결정본문을 남기고 참조만 해제하며 노드Undo가 해제한 도메인링크까지 되돌리지는 않습니다. UI삭제안내와 문서에 표시했습니다.
 
+Workspace/Project/Map 휴지통은30일 이후 확인에 의한 영구삭제만 가능하며 자동파기 없음. 보관부모 안에서 맵 변경을 차단합니다. Task/Decision 삭제표시는 백업에 남지만 개별 휴지통 UI는 제공하지 않습니다. Roster는보관/복귀만. 보존된 항목도 개수/용량한도에 포함합니다.
 
-## P2.0 진행 중
+## P4 전에 확인
 
-입력·승인·라이선스·독립 스캐폴드 작성
+1. 실제 OS IME, native200%, 스크린리더, 터치, 다른브라우저 검수. QA_REPORT의 UNVERIFIED 참고.
+2. 사용자/외부검수자가 P3 데이터/삭제/이력 경계를 승인해야 합니다.
+3. P0 D-01/02/03의 잠정 기술 결정을 Spike로 확정하고 실제 계정/tenant/권한/revision/CAS 검증을 설계해야 합니다. P3 local IDs/명부를 인증주체로 그대로 사용하지 마세요.
+4. LocalProjectRepository 인터페이스를 API로 바꿀 때 서버 ack/실패/권한회수/충돌 초안회수 의미를 보존하고 schema3→제품스키마 명시적migration을 만드세요.
+5. 여러 프로젝트의 최대aggregate·장시간메모리·초기저장지연·실제기기성능을 추가 측정하세요. 현재500/1000은한맵 단일Linux 실측입니다.
 
-검증: 원본 해시 기준 생성, 설치 패키지 버전 확인
+코드 재현 기준 SHA·최종 SHA·Patch hash·정확한 적용 결과는 납품 PATCH_MANIFEST.md에 있습니다. P2 원본ZIP도 함께 제공합니다.
 
-남은 사항: 모델 및 라이선스 증거 확정
+## P3-006
 
-## P2.0 완료
+통합UX·회귀·실측·정적납품 및 통합패치 기준 확정
 
-독립 디렉터리·공통모델·P2형식·재사용/라이선스 계약 확정
-
-검증: 입력 대조·실제 설치버전 고정·라이선스 원문 수집
-
-남은 사항: 기존 코드 직접복사0; P2.1 실제 CRUD UI 연결
-
-## P2.1 진행 중
-
-검증 가능한 명령 계층과 실제 CRUD 화면 연결
-
-검증: 도메인 초기8개 검사 통과
-
-남은 사항: React Flow/Inspector 실제 입력·다중선택 연결
-
-## P2.1 완료
-
-노드/연결 CRUD·실제 Inspector·다중선택·뷰포트 연결
-
-검증: 타입검사/build 성공; 생성→라벨/좌표수정 브라우저 확인; JS오류0
-
-남은 사항: P2.2 그룹 이동/해제 및 관계 탐색 검증
-
-## P2.2 진행 중
-
-단일부모 그룹과 1-hop·검색/유형필터 연결
-
-검증: 순환/중복/그룹 좌표 단위검사8개 통과
-
-남은 사항: 브라우저 그룹화/이동/해제와 선택 확인
-
-## P2.2 완료
-
-단일부모 그룹 생성·이동·크기·해제·삭제,1-hop/검색/필터
-
-검증: 그룹화 위치유지→이동→Undo→해제 브라우저 통과; 검색1건 확인
-
-남은 사항: P2.3 실제 드래그 단일이력/키보드·IME 검사
-
-## P2.3 진행 중
-
-명령단위 Undo/Redo와 입력/IME 보호 계층
-
-검증: 복합 이력·분기폐기·상한·단축키 자동검사 추가
-
-남은 사항: 브라우저 드래그·키보드 입력 보호 검사
-
-## P2.3 완료
-
-명령 이력80건/16MiB 상한·단축키·입력/IME 보호·드래그 종료 묶음
-
-검증: 단위14개 통과;15단계 드래그1이력/UndoRedo/키보드삭제/합성IME 브라우저 통과
-
-남은 사항: 실제 OS 한글IME는 미검증; P2.4 안전한 로컬 저장 연결
-
-## P2.4 진행 중
-
-P2 map-local v1 자동저장·이전정상본·손상 차단·import preview
-
-검증: 스키마 allowlist/용량/참조 검증 계층 활용
-
-남은 사항: 저장실패/손상 데이터/새로고침 실제 테스트
-
-## P2.4 완료
-
-로컬 전용 v1 저장·읽기 검증·이전 정상본/손상 격리·미리보기 교체·샘플/빈맵
-
-검증: 단위21개; 새로고침 의미동등·다운로드·오류거부·손상복구·quota초안보존 통과
-
-남은 사항: P2.5 통합 E2E/성능/반응형·미검증 정리
-
-## P2.5 진행 중
-
-실측 QA·회귀·정적패키징
-
-검증: 기존 단계 검사 완료; 통합 검증 시작
-
-남은 사항: 500/1000 p95·프레임/메모리·4폭·접근성·납품
-
-## P2.5 완료
-
-통합 QA·성능 개선·4폭/접근성·소스와 정적 dist 패키징
-
-검증: 단위22·E2E33·접근성15·납품4 PASS; build 성공; 500/1000 선택 p95 84.3ms; 원본754개 무변경
-
-남은 사항: 실기기 IME/200%/AT/터치/타브라우저 및 새 npm 설치 UNVERIFIED; 외부 검수 대기
+검증: 단위40·통합39·탐색5·이행7·손상3·납품4 PASS; p95 83.4ms; build 성공; 패치 재현결과는 납품manifest 참조

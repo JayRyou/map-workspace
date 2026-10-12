@@ -15,7 +15,8 @@ const Group = memo(function Group({ data }: NodeProps<Node<{
 }>>) { return <div className="map-group"><span>{data.label}</span></div>; });
 const nodeTypes = { mapNode: Card, mapGroup: Group };
 export type GraphApi = ReactFlowInstance;
-export default function GraphCanvas({ map, view, onView, run, onReady, onBusy }: {
+export default function GraphCanvas({ map, view, onView, run, onReady, onBusy, readOnly=false }: {
+    readOnly?: boolean;
     map: MapModel;
     view: View;
     onView: (patch: Partial<View>) => void;
@@ -88,6 +89,6 @@ export default function GraphCanvas({ map, view, onView, run, onReady, onBusy }:
         nodesRef.current = converted;
     } onBusy(false); };
     return <div className="graph-root" data-testid="canvas"><ReactFlow nodes={nodes} edges={lines} nodeTypes={nodeTypes} onNodesChange={changes} onEdgesChange={edgeChanges} onNodeDragStart={start} onNodeDragStop={finish} onSelectionDragStart={start} onSelectionDragStop={finish} onConnect={c => { if (c.source && c.target)
-        run({ type: 'addEdge', edge: { id: 'e_' + crypto.randomUUID(), sourceNodeId: c.source, targetNodeId: c.target, typeKey: 'relation', label: '이어짐', metadata: { description: '', notes: '' } } }); }} onInit={api => onReady(api)} defaultViewport={view.viewport} onMoveEnd={(_, viewport) => onView({ viewport })} deleteKeyCode={null} disableKeyboardA11y selectionOnDrag panOnDrag={[1, 2]} multiSelectionKeyCode={['Control', 'Meta', 'Shift']} selectionKeyCode="Shift" minZoom={.05} maxZoom={4} nodesDraggable elementsSelectable nodesConnectable selectNodesOnDrag nodeDragThreshold={3} ariaLabelConfig={{ 'controls.zoomIn.ariaLabel': '맵 확대', 'controls.zoomOut.ariaLabel': '맵 축소', 'controls.fitView.ariaLabel': '전체 보기', 'controls.interactive.ariaLabel': '상호작용 전환', 'node.a11yDescription.keyboardDisabled': 'Enter로 선택합니다. 방향키로 이동하고 상세에서 수정하세요.', 'edge.a11yDescription.default': 'Enter로 연결을 선택하고 상세에서 수정하세요.' }} proOptions={{ hideAttribution: false }}><Background gap={18} size={1} color="#d9dfe4"/><Controls showInteractive={false}/></ReactFlow><div className="canvas-caption">드래그로 영역 선택 · Shift/Ctrl 다중 선택 · 마우스 휠 확대 · 우클릭 드래그 이동</div></div>;
+        run({ type: 'addEdge', edge: { id: 'e_' + crypto.randomUUID(), sourceNodeId: c.source, targetNodeId: c.target, typeKey: 'relation', label: '이어짐', metadata: { description: '', notes: '' } } }); }} onInit={api => onReady(api)} defaultViewport={view.viewport} onMoveEnd={(_, viewport) => onView({ viewport })} deleteKeyCode={null} disableKeyboardA11y selectionOnDrag panOnDrag={[1, 2]} multiSelectionKeyCode={['Control', 'Meta', 'Shift']} selectionKeyCode="Shift" minZoom={.05} maxZoom={4} nodesDraggable={!readOnly} elementsSelectable nodesConnectable={!readOnly} selectNodesOnDrag nodeDragThreshold={3} ariaLabelConfig={{ 'controls.zoomIn.ariaLabel': '맵 확대', 'controls.zoomOut.ariaLabel': '맵 축소', 'controls.fitView.ariaLabel': '전체 보기', 'controls.interactive.ariaLabel': '상호작용 전환', 'node.a11yDescription.keyboardDisabled': 'Enter로 선택합니다. 방향키로 이동하고 상세에서 수정하세요.', 'edge.a11yDescription.default': 'Enter로 연결을 선택하고 상세에서 수정하세요.' }} proOptions={{ hideAttribution: false }}><Background gap={18} size={1} color="#d9dfe4"/><Controls showInteractive={false}/></ReactFlow><div className="canvas-caption">드래그로 영역 선택 · Shift/Ctrl 다중 선택 · 마우스 휠 확대 · 우클릭 드래그 이동</div></div>;
 }
 
