@@ -1,0 +1,103 @@
+{
+  "checks": [
+    {
+      "name": "포인터 핸들 연결 실제 생성",
+      "pass": true
+    },
+    {
+      "name": "연결 Inspector 실제 수정",
+      "pass": true
+    },
+    {
+      "name": "관계만 삭제 노드 보존",
+      "pass": true
+    },
+    {
+      "name": "native dialog Tab 초점 유지",
+      "pass": true
+    },
+    {
+      "name": "Esc 후 제어로 초점 복귀",
+      "pass": true
+    },
+    {
+      "name": "키보드 focus outline",
+      "pass": true
+    },
+    {
+      "name": "모바일 Inspector 열기 시 초점 이동",
+      "pass": true
+    },
+    {
+      "name": "모바일 Tab으로 상세 입력 진입",
+      "pass": true
+    },
+    {
+      "name": "모바일 닫기 초점 목록 복귀",
+      "pass": true
+    },
+    {
+      "name": "200% 동등720px에서 필수 생성·수정 가능",
+      "pass": true
+    },
+    {
+      "name": "동등720px 문서 넘침 없음",
+      "pass": true
+    },
+    {
+      "name": "텍스트 대비 본문",
+      "pass": true
+    },
+    {
+      "name": "텍스트 대비 보조",
+      "pass": true
+    },
+    {
+      "name": "텍스트 대비 주요버튼",
+      "pass": true
+    },
+    {
+      "name": "텍스트 대비 오류",
+      "pass": true
+    }
+  ],
+  "passed": 15,
+  "contrast": [
+    {
+      "name": "본문",
+      "fg": "#202932",
+      "bg": "#ffffff",
+      "ratio": 14.74
+    },
+    {
+      "name": "보조",
+      "fg": "#53616c",
+      "bg": "#f7f8fa",
+      "ratio": 6
+    },
+    {
+      "name": "주요버튼",
+      "fg": "#ffffff",
+      "bg": "#245dc1",
+      "ratio": 6.16
+    },
+    {
+      "name": "오류",
+      "fg": "#a32d32",
+      "bg": "#fff0f0",
+      "ratio": 6.37
+    }
+  ],
+  "nativeZoom": "UNVERIFIED",
+  "nativeBefore": {
+    "width": 1440,
+    "dpr": 1
+  },
+  "nativeAfter": {
+    "width": 1440,
+    "dpr": 1
+  },
+  "screenReader": "UNVERIFIED",
+  "realTouch": "UNVERIFIED",
+  "realOSIME": "UNVERIFIED"
+}

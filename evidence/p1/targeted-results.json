@@ -1,0 +1,227 @@
+{
+  "checks": [
+    {
+      "name": "keyboard canvas selection retains focus",
+      "pass": true
+    },
+    {
+      "name": "0-hop preview matches download",
+      "pass": true
+    },
+    {
+      "name": "0-hop excludes neighbors",
+      "pass": true
+    },
+    {
+      "name": "owner invite gate",
+      "pass": true
+    },
+    {
+      "name": "admin invite gate",
+      "pass": true
+    },
+    {
+      "name": "editor invite gate",
+      "pass": true
+    },
+    {
+      "name": "viewer invite gate",
+      "pass": true
+    },
+    {
+      "name": "new conflict resets latest-review gate",
+      "pass": true
+    },
+    {
+      "name": "390 members fits",
+      "pass": true
+    },
+    {
+      "name": "390 share fits",
+      "pass": true
+    },
+    {
+      "name": "390 export fits",
+      "pass": true
+    },
+    {
+      "name": "390 attributes fits",
+      "pass": true
+    },
+    {
+      "name": "390 import fits",
+      "pass": true
+    },
+    {
+      "name": "390 more-states fits",
+      "pass": true
+    },
+    {
+      "name": "768 members fits",
+      "pass": true
+    },
+    {
+      "name": "768 share fits",
+      "pass": true
+    },
+    {
+      "name": "768 export fits",
+      "pass": true
+    },
+    {
+      "name": "768 attributes fits",
+      "pass": true
+    },
+    {
+      "name": "768 import fits",
+      "pass": true
+    },
+    {
+      "name": "768 more-states fits",
+      "pass": true
+    },
+    {
+      "name": "1440 members fits",
+      "pass": true
+    },
+    {
+      "name": "1440 share fits",
+      "pass": true
+    },
+    {
+      "name": "1440 export fits",
+      "pass": true
+    },
+    {
+      "name": "1440 attributes fits",
+      "pass": true
+    },
+    {
+      "name": "1440 import fits",
+      "pass": true
+    },
+    {
+      "name": "1440 more-states fits",
+      "pass": true
+    },
+    {
+      "name": "1920 members fits",
+      "pass": true
+    },
+    {
+      "name": "1920 share fits",
+      "pass": true
+    },
+    {
+      "name": "1920 export fits",
+      "pass": true
+    },
+    {
+      "name": "1920 attributes fits",
+      "pass": true
+    },
+    {
+      "name": "1920 import fits",
+      "pass": true
+    },
+    {
+      "name": "1920 more-states fits",
+      "pass": true
+    },
+    {
+      "name": "contrast body",
+      "pass": true,
+      "detail": {
+        "ratio": 14.74047971623687
+      }
+    },
+    {
+      "name": "contrast muted",
+      "pass": true,
+      "detail": {
+        "ratio": 5.999058988561369
+      }
+    },
+    {
+      "name": "contrast selected",
+      "pass": true,
+      "detail": {
+        "ratio": 5.530993900702077
+      }
+    },
+    {
+      "name": "contrast success",
+      "pass": true,
+      "detail": {
+        "ratio": 6.549858890605865
+      }
+    },
+    {
+      "name": "contrast warning",
+      "pass": true,
+      "detail": {
+        "ratio": 6.1292239662034405
+      }
+    },
+    {
+      "name": "contrast error",
+      "pass": true,
+      "detail": {
+        "ratio": 6.369950827063756
+      }
+    },
+    {
+      "name": "contrast primary",
+      "pass": true,
+      "detail": {
+        "ratio": 6.1569042564386125
+      }
+    }
+  ],
+  "contrast": [
+    {
+      "name": "body",
+      "fg": "#202932",
+      "bg": "#ffffff",
+      "ratio": 14.74
+    },
+    {
+      "name": "muted",
+      "fg": "#53616c",
+      "bg": "#f7f8fa",
+      "ratio": 6
+    },
+    {
+      "name": "selected",
+      "fg": "#245dc1",
+      "bg": "#edf3ff",
+      "ratio": 5.53
+    },
+    {
+      "name": "success",
+      "fg": "#216344",
+      "bg": "#eef7f1",
+      "ratio": 6.55
+    },
+    {
+      "name": "warning",
+      "fg": "#825313",
+      "bg": "#fff6e7",
+      "ratio": 6.13
+    },
+    {
+      "name": "error",
+      "fg": "#a32d32",
+      "bg": "#fff0f0",
+      "ratio": 6.37
+    },
+    {
+      "name": "primary",
+      "fg": "#ffffff",
+      "bg": "#245dc1",
+      "ratio": 6.16
+    }
+  ],
+  "passed": 39,
+  "failed": 0
+}

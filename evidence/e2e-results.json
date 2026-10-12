@@ -1,0 +1,160 @@
+{
+  "checks": [
+    {
+      "name": "초기 6노드",
+      "pass": true
+    },
+    {
+      "name": "1440 캔버스65%",
+      "pass": true,
+      "detail": {
+        "width": 936,
+        "ratio": 0.65
+      }
+    },
+    {
+      "name": "완전한 빈 맵 안내",
+      "pass": true
+    },
+    {
+      "name": "실제3노드 생성",
+      "pass": true
+    },
+    {
+      "name": "실제 A→B→C→A 순환 생성",
+      "pass": true
+    },
+    {
+      "name": "중복 연결 UI 거부",
+      "pass": true
+    },
+    {
+      "name": "중복 거부 후 기존3연결 보존",
+      "pass": true
+    },
+    {
+      "name": "실제2노드 그룹화",
+      "pass": true
+    },
+    {
+      "name": "그룹 위치와 크기 적용",
+      "pass": true
+    },
+    {
+      "name": "복합 편집 Undo/Redo 일치",
+      "pass": true
+    },
+    {
+      "name": "통합 편집→새로고침→map/view 동일",
+      "pass": true
+    },
+    {
+      "name": "실제 export 동일",
+      "pass": true
+    },
+    {
+      "name": "실제 import 미리보기→교체 왕복",
+      "pass": true
+    },
+    {
+      "name": "다중삭제 후 dangling edge 없음",
+      "pass": true
+    },
+    {
+      "name": "다중삭제 Undo ID/참조/위치 정확",
+      "pass": true
+    },
+    {
+      "name": "0/0/1 뷰포트도 강제 fit없이 복원",
+      "pass": true
+    },
+    {
+      "name": "390 문서 가로넘침 없음",
+      "pass": true,
+      "detail": {
+        "scrollWidth": 390
+      }
+    },
+    {
+      "name": "390 목록 기본",
+      "pass": true
+    },
+    {
+      "name": "390 상세 접근",
+      "pass": true
+    },
+    {
+      "name": "390 한글 폼 가로넘침 없음",
+      "pass": true
+    },
+    {
+      "name": "768 문서 가로넘침 없음",
+      "pass": true,
+      "detail": {
+        "scrollWidth": 768
+      }
+    },
+    {
+      "name": "768 목록 기본",
+      "pass": true
+    },
+    {
+      "name": "768 상세 접근",
+      "pass": true
+    },
+    {
+      "name": "768 한글 폼 가로넘침 없음",
+      "pass": true
+    },
+    {
+      "name": "1440 문서 가로넘침 없음",
+      "pass": true,
+      "detail": {
+        "scrollWidth": 1440
+      }
+    },
+    {
+      "name": "1920 문서 가로넘침 없음",
+      "pass": true,
+      "detail": {
+        "scrollWidth": 1920
+      }
+    },
+    {
+      "name": "Tab/Enter로 생성·수정",
+      "pass": true
+    },
+    {
+      "name": "입력 이외 버튼에서 삭제 모달",
+      "pass": true
+    },
+    {
+      "name": "새 탭 열기만으로 저장 충돌을 만들지 않음",
+      "pass": true
+    },
+    {
+      "name": "다른 탭 변경에서 자동 저장 차단",
+      "pass": true
+    },
+    {
+      "name": "JS 오류0",
+      "pass": true,
+      "detail": []
+    },
+    {
+      "name": "외부 요청0",
+      "pass": true,
+      "detail": []
+    },
+    {
+      "name": "누락 자산0",
+      "pass": true,
+      "detail": []
+    }
+  ],
+  "passed": 33,
+  "errors": [],
+  "external": [],
+  "httpErrors": [],
+  "browser": "153.0.8010.0"
+}

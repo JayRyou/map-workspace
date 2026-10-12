@@ -1,0 +1,12 @@
+{
+  "passed": [
+    "15회 포인터 이동 드래그1회 → 이력1건",
+    "드래그 Undo 좌표 복원",
+    "Redo 동일 좌표",
+    "입력란 CtrlZ가 그래프 이력을 건드리지 않음",
+    "합성 composition/Delete 보호",
+    "키보드 선택·방향키 이동",
+    "키보드 Delete→Undo 노드/참조 복원"
+  ],
+  "realOSIME": "UNVERIFIED; synthetic events only"
+}

@@ -1,0 +1,287 @@
+{
+  "date": "2026-10-09T17:28:29.838Z",
+  "checks": [
+    {
+      "name": "file:// graph",
+      "pass": true
+    },
+    {
+      "name": "demo disclosure",
+      "pass": true
+    },
+    {
+      "name": "1440 canvas >=60%",
+      "pass": true,
+      "detail": {
+        "width": 936,
+        "ratio": 0.65
+      }
+    },
+    {
+      "name": "Inspector interview",
+      "pass": true
+    },
+    {
+      "name": "Inspector e1",
+      "pass": true
+    },
+    {
+      "name": "Inspector g1",
+      "pass": true
+    },
+    {
+      "name": "Inspector decision",
+      "pass": true
+    },
+    {
+      "name": "Inspector task",
+      "pass": true
+    },
+    {
+      "name": "decision/task independent",
+      "pass": true
+    },
+    {
+      "name": "state clean",
+      "pass": true
+    },
+    {
+      "name": "state dirty",
+      "pass": true
+    },
+    {
+      "name": "state saving",
+      "pass": true
+    },
+    {
+      "name": "state error",
+      "pass": true
+    },
+    {
+      "name": "state offline",
+      "pass": true
+    },
+    {
+      "name": "state conflict",
+      "pass": true
+    },
+    {
+      "name": "state revoked",
+      "pass": true
+    },
+    {
+      "name": "revoked edit disabled",
+      "pass": true
+    },
+    {
+      "name": "viewer edit disabled",
+      "pass": true
+    },
+    {
+      "name": "viewer publish disabled",
+      "pass": true
+    },
+    {
+      "name": "conflict retry guarded",
+      "pass": true
+    },
+    {
+      "name": "retry after explicit latest review",
+      "pass": true
+    },
+    {
+      "name": "explicit reapply remains dirty",
+      "pass": true
+    },
+    {
+      "name": "snapshot no internal fields",
+      "pass": true
+    },
+    {
+      "name": "snapshot expiry",
+      "pass": true
+    },
+    {
+      "name": "Markdown download matches preview",
+      "pass": true,
+      "detail": {
+        "previewLength": 291,
+        "downloadLength": 291
+      }
+    },
+    {
+      "name": "JSON download matches preview",
+      "pass": true
+    },
+    {
+      "name": "page projects",
+      "pass": true
+    },
+    {
+      "name": "page decisions",
+      "pass": true
+    },
+    {
+      "name": "page tasks",
+      "pass": true
+    },
+    {
+      "name": "page history",
+      "pass": true
+    },
+    {
+      "name": "page settings",
+      "pass": true
+    },
+    {
+      "name": "page account",
+      "pass": true
+    },
+    {
+      "name": "page empty",
+      "pass": true
+    },
+    {
+      "name": "page map",
+      "pass": true
+    },
+    {
+      "name": "keyboard opens dialog",
+      "pass": true
+    },
+    {
+      "name": "dialog focus contained",
+      "pass": true
+    },
+    {
+      "name": "Escape focus restored",
+      "pass": true
+    },
+    {
+      "name": "visible focus",
+      "pass": true
+    },
+    {
+      "name": "mock route coverage",
+      "pass": true,
+      "detail": {
+        "routes": 79
+      }
+    },
+    {
+      "name": "width 390 no document overflow",
+      "pass": true
+    },
+    {
+      "name": "width 390 list first",
+      "pass": true
+    },
+    {
+      "name": "width 390 detail focus",
+      "pass": true
+    },
+    {
+      "name": "width 390 focus returns list",
+      "pass": true
+    },
+    {
+      "name": "width 390 long Korean inspector",
+      "pass": true
+    },
+    {
+      "name": "width 768 no document overflow",
+      "pass": true
+    },
+    {
+      "name": "width 768 list first",
+      "pass": true
+    },
+    {
+      "name": "width 768 detail focus",
+      "pass": true
+    },
+    {
+      "name": "width 768 focus returns list",
+      "pass": true
+    },
+    {
+      "name": "width 768 long Korean inspector",
+      "pass": true
+    },
+    {
+      "name": "width 1440 no document overflow",
+      "pass": true
+    },
+    {
+      "name": "width 1440 long Korean inspector",
+      "pass": true
+    },
+    {
+      "name": "width 1920 no document overflow",
+      "pass": true
+    },
+    {
+      "name": "width 1920 long Korean inspector",
+      "pass": true
+    },
+    {
+      "name": "200% equivalent viewport list",
+      "pass": true
+    },
+    {
+      "name": "200% equivalent viewport no overflow",
+      "pass": true
+    },
+    {
+      "name": "static HTTP startup",
+      "pass": true
+    },
+    {
+      "name": "no browser persistence",
+      "pass": true
+    },
+    {
+      "name": "external request count",
+      "pass": true
+    },
+    {
+      "name": "runtime errors",
+      "pass": true,
+      "detail": []
+    }
+  ],
+  "errors": [],
+  "external": [],
+  "widths": [
+    {
+      "width": 390,
+      "doc": 390,
+      "viewport": 390,
+      "list": true,
+      "canvas": 390
+    },
+    {
+      "width": 768,
+      "doc": 768,
+      "viewport": 768,
+      "list": true,
+      "canvas": 768
+    },
+    {
+      "width": 1440,
+      "doc": 1440,
+      "viewport": 1440,
+      "list": false,
+      "canvas": 936
+    },
+    {
+      "width": 1920,
+      "doc": 1920,
+      "viewport": 1920,
+      "list": false,
+      "canvas": 1372
+    }
+  ],
+  "passed": 59,
+  "failed": 0
+}

@@ -1,0 +1,182 @@
+[
+  {
+    "stage": 1,
+    "status": "진행 중",
+    "at": "2026-10-09T17:06:22.260316+00:00",
+    "purpose": "실제 제품과 안티패턴 근거 확보",
+    "work": "공식 문서·표현 사용 사례 조사",
+    "output": "리서치",
+    "validation": "진행 중",
+    "remaining": "실사용 UI 로그인 검토 없음"
+  },
+  {
+    "stage": 1,
+    "status": "완료",
+    "at": "2026-10-09T17:06:22.260705+00:00",
+    "purpose": "근거 확보",
+    "work": "공식 제품4종·안티패턴 용례 조사",
+    "output": "RESEARCH / DESIGN_GUARDRAILS",
+    "validation": "공식 기능과 의견 구분",
+    "remaining": "타사 전체 실사용 미검증"
+  },
+  {
+    "stage": 2,
+    "status": "진행 중",
+    "at": "2026-10-09T17:06:22.261043+00:00",
+    "purpose": "Must 화면 경로 정의",
+    "work": "REQ/US 대조",
+    "output": "IA·용어·흐름",
+    "validation": "진행 중",
+    "remaining": "없음"
+  },
+  {
+    "stage": 2,
+    "status": "완료",
+    "at": "2026-10-09T17:06:22.261482+00:00",
+    "purpose": "Must 화면 경로 정의",
+    "work": "REQ-01~10/US-01~11/역할 대조",
+    "output": "IA / GLOSSARY / USER_FLOWS",
+    "validation": "모든 시나리오 진입점 정의",
+    "remaining": "실사용자 검증은P1.9구분"
+  },
+  {
+    "stage": 3,
+    "status": "진행 중",
+    "at": "2026-10-09T17:06:22.261660+00:00",
+    "purpose": "토큰·상태 정합",
+    "work": "한글타입/색/간격",
+    "output": "토큰·컴포넌트",
+    "validation": "진행 중",
+    "remaining": "실제 대비P1.8측정"
+  },
+  {
+    "stage": 3,
+    "status": "완료",
+    "at": "2026-10-09T17:06:22.262027+00:00",
+    "purpose": "토큰·상태 정합",
+    "work": "색·한글·간격·입력상태 정의",
+    "output": "TOKENS / COMPONENT_SPEC",
+    "validation": "구현 기준 확정(잠정설계)",
+    "remaining": "대비/키보드 실측은P1.8"
+  },
+  {
+    "stage": 4,
+    "status": "진행 중",
+    "at": "2026-10-09T17:06:22.262244+00:00",
+    "purpose": "맵 셸",
+    "work": "정적HTML/CSS/JS+SVG 샘플",
+    "output": "prototype/",
+    "validation": "제작 중",
+    "remaining": "P2 엔진 금지"
+  },
+  {
+    "stage": 4,
+    "status": "완료",
+    "at": "2026-10-09T17:11:14.148402+00:00",
+    "purpose": "맵 셸",
+    "work": "8요소·8관계·3그룹 정적SVG",
+    "output": "prototype 및 shell캡처",
+    "validation": "file://열기·선택·JS오류0",
+    "remaining": "상세맥락은P1.5"
+  },
+  {
+    "stage": 5,
+    "status": "진행 중",
+    "at": "2026-10-09T17:11:14.173063+00:00",
+    "purpose": "맥락 Inspector",
+    "work": "선택5종·관련이동·상태분리",
+    "output": "상세패널",
+    "validation": "진행 중",
+    "remaining": "없음"
+  },
+  {
+    "stage": 5,
+    "status": "완료",
+    "at": "2026-10-09T17:12:11.591927+00:00",
+    "purpose": "맥락 Inspector",
+    "work": "선택5종·관련이동·결정/업무분리",
+    "output": "prototype/app.js",
+    "validation": "브라우저 선택·상세 확인,JS오류0",
+    "remaining": "전체키보드검증P1.8"
+  },
+  {
+    "stage": 6,
+    "status": "진행 중",
+    "at": "2026-10-09T17:12:11.628294+00:00",
+    "purpose": "저장/충돌 상태",
+    "work": "6상태·권한회수·logout",
+    "output": "STATE_FLOWS 및 상태UI",
+    "validation": "진행 중",
+    "remaining": "실제서버없음"
+  },
+  {
+    "stage": 6,
+    "status": "완료",
+    "at": "2026-10-09T17:13:41.373382+00:00",
+    "purpose": "저장/충돌 상태",
+    "work": "6상태·회수·응답유실·후속수정·logout",
+    "output": "STATE_FLOWS 및 상태UI",
+    "validation": "정적상태 구현,통합검증P1.8",
+    "remaining": "실제서버/초안저장 미구현"
+  },
+  {
+    "stage": 7,
+    "status": "진행 중",
+    "at": "2026-10-09T17:13:41.395820+00:00",
+    "purpose": "협업·데이터 화면",
+    "work": "초대/공개snapshot/데이터/계정",
+    "output": "화면 예시",
+    "validation": "진행 중",
+    "remaining": "모두mock"
+  },
+  {
+    "stage": 7,
+    "status": "완료",
+    "at": "2026-10-09T17:19:55.969384+00:00",
+    "purpose": "협업·공유·데이터 화면",
+    "work": "프로젝트·계정·팀원·명부·스냅샷·import/export·이력 화면 연결",
+    "output": "prototype/app.js",
+    "validation": "JS 문법 및 기본 열기 오류 0; 통합 검증은 P1.8",
+    "remaining": "실제 인증·저장·초대·결제 미구현"
+  },
+  {
+    "stage": 8,
+    "status": "진행 중",
+    "at": "2026-10-09T17:19:55.995823+00:00",
+    "purpose": "반응형·접근성 검증",
+    "work": "4개 폭과 키보드·확대·대비·화면 기능 점검",
+    "output": "screenshots 및 test-results 예정",
+    "validation": "검사 진행 중",
+    "remaining": "발견 문제 수정 후 재검사"
+  },
+  {
+    "stage": 8,
+    "status": "완료",
+    "at": "2026-10-09T17:27:53.520650+00:00",
+    "purpose": "반응형·접근성 검증",
+    "work": "4개 폭·키보드·재진입·장문·대비·모달 검사 및 문제 수정",
+    "output": "screenshots 4폭·충돌·공개; evidence/p1",
+    "validation": "브라우저59+추가39 통과; 1440 중앙65%",
+    "remaining": "실제 브라우저 메뉴200%·스크린리더·타 브라우저 UNVERIFIED"
+  },
+  {
+    "stage": 9,
+    "status": "진행 중",
+    "at": "2026-10-09T17:27:53.547588+00:00",
+    "purpose": "종합 리뷰와 인수인계",
+    "work": "Must 추적표·4역할 분석자 워크스루·잔여 결정 정리",
+    "output": "REVIEW/REQ_TRACEABILITY/QA/HANDOFF",
+    "validation": "디자인 데모 검사만 통과, 제품 기능 검증 아님",
+    "remaining": "사용자·외부검수 승인 대기"
+  },
+  {
+    "stage": 9,
+    "status": "완료",
+    "at": "2026-10-09T17:28:56.482747+00:00",
+    "purpose": "종합 리뷰와 인수인계",
+    "work": "Must 추적표·4역할 분석자 워크스루·결정/위험·실행 안내 정리",
+    "output": "REVIEW/REQ_TRACEABILITY/QA/HANDOFF 및 납품 ZIP",
+    "validation": "59+39 검사 통과; 링크/자산 오류0; 원본416+압축3 변경0",
+    "remaining": "P1 검수 대기; 사용자·외부검수 승인 전 P2 금지"
+  }
+]

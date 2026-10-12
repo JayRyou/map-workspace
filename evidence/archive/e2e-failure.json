@@ -1,0 +1,66 @@
+{
+  "checks": [
+    {
+      "name": "초기 6노드",
+      "pass": true
+    },
+    {
+      "name": "1440 캔버스65%",
+      "pass": true,
+      "detail": {
+        "width": 936,
+        "ratio": 0.65
+      }
+    },
+    {
+      "name": "완전한 빈 맵 안내",
+      "pass": true
+    },
+    {
+      "name": "실제3노드 생성",
+      "pass": true
+    },
+    {
+      "name": "실제 A→B→C→A 순환 생성",
+      "pass": true
+    },
+    {
+      "name": "중복 연결 UI 거부",
+      "pass": true
+    },
+    {
+      "name": "중복 거부 후 기존3연결 보존",
+      "pass": true
+    },
+    {
+      "name": "실제2노드 그룹화",
+      "pass": true
+    },
+    {
+      "name": "그룹 위치와 크기 적용",
+      "pass": true
+    },
+    {
+      "name": "복합 편집 Undo/Redo 일치",
+      "pass": true
+    },
+    {
+      "name": "통합 편집→새로고침→map/view 동일",
+      "pass": true
+    },
+    {
+      "name": "실제 export 동일",
+      "pass": true
+    },
+    {
+      "name": "실제 import 미리보기→교체 왕복",
+      "pass": true
+    },
+    {
+      "name": "다중삭제 후 dangling edge 없음",
+      "pass": true
+    }
+  ],
+  "error": "AssertionError [ERR_ASSERTION]: Expected values to be strictly deep-equal:\n+ actual - expected\n... Skipped lines\n\n  {\n+   edges: [],\n-   edges: [\n-     {\n-       id: 'e_027d0e1f-b096-4e03-8d91-f55a7d43402b',\n-       label: '관계 0-1',\n-       metadata: {\n-         description: '',\n-         notes: ''\n-       },\n-       sourceNodeId: 'n_c3a877a5-2f61-4d7a-a854-1e244b9e23ea',\n-       targetNodeId: 'n_b410a371-5034-4e8d-a78e-223a34304af6',\n-       typeKey: 'relation'\n-     },\n-     {\n-       id: 'e_942a9b47-f204-4836-bc55-9a78e0e1f5f1',\n-       label: '관계 1-2',\n-       metadata: {\n-         description: '',\n-         notes: ''\n-       },\n-       sourceNodeId: 'n_b410a371-5034-4e8d-a78e-223a34304af6',\n-       targetNodeId: 'n_07712854-d176-4ae3-9caa-0cbba0e797e8',\n-       typeKey: 'relation'\n-     },\n-     {\n-       id: 'e_313a7134-9952-444c-b50c-5abad8c403a5',\n-       label: '관계 2-0',\n-       metadata: {\n-         description: '',\n-         notes: ''\n-       },\n-       sourceNodeId: 'n_07712854-d176-4ae3-9caa-0cbba0e797e8',\n-       targetNodeId: 'n_c3a877a5-2f61-4d7a-a854-1e244b9e23ea',\n-       typeKey: 'relation'\n-     }\n-   ],\n    groups: [\n      {\n        id: 'g_3e0d53f5-37cc-4e17-a273-90c675fabff1',\n        label: '새로운 그룹',\n        metadata: {\n...\n      {\n-       groupId: 'g_3e0d53f5-37cc-4e17-a273-90c675fabff1',\n-       id: 'n_c3a877a5-2f61-4d7a-a854-1e244b9e23ea',\n-       label: '한글 요소 A',\n-       metadata: {\n-         description: '',\n-         notes: ''\n-       },\n-       position: {\n-         x: 24.000000000000057,\n-         y: 48\n-       },\n-       typeKey: '아이디어'\n-     },\n-     {\n-       groupId: 'g_3e0d53f5-37cc-4e17-a273-90c675fabff1',\n-       id: 'n_b410a371-5034-4e8d-a78e-223a34304af6',\n-       label: '길게 수정한 요소 B',\n-       metadata: {\n-         description: '',\n-         notes: ''\n-       },\n-       position: {\n-         x: 24,\n-         y: 50.8046875\n-       },\n-       typeKey: '아이디어'\n-     },\n-     {\n        id: 'n_07712854-d176-4ae3-9caa-0cbba0e797e8',\n        label: '요소 C',\n        metadata: {\n          description: '',\n          notes: ''\n",
+  "errors": []
+}
